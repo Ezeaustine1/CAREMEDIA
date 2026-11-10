@@ -1,0 +1,405 @@
+{
+  "entities": {
+    "PortfolioItem": {
+      "title": "PortfolioItem",
+      "description": "A photography or videography item in the CAREMEDIA portfolio and video showcase.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Title of the photograph or film project",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "description": {
+          "type": "string",
+          "description": "Editorial description and story behind the project",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "category": {
+          "type": "string",
+          "description": "Portfolio category name",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "mediaType": {
+          "type": "string",
+          "description": "Whether the item is a still photograph or video project",
+          "enum": ["photo", "video"],
+          "maxLength": 20
+        },
+        "mediaUrl": {
+          "type": "string",
+          "description": "URL or data URI for the high-resolution image, uploaded video, or YouTube/Vimeo link",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "thumbnailUrl": {
+          "type": "string",
+          "description": "Thumbnail image URL for video or photo preview",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Whether this item is featured prominently on the homepage"
+        },
+        "exifInfo": {
+          "type": "string",
+          "description": "Camera, lens, or cinema technical metadata",
+          "maxLength": 200
+        },
+        "clientName": {
+          "type": "string",
+          "description": "Client or event name credit",
+          "maxLength": 120
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation server timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update server timestamp"
+        }
+      },
+      "required": [
+        "title",
+        "description",
+        "category",
+        "mediaType",
+        "mediaUrl",
+        "thumbnailUrl",
+        "featured",
+        "exifInfo",
+        "clientName",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Category": {
+      "title": "Category",
+      "description": "Portfolio category managed by the administrator.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Display name of the portfolio category",
+          "minLength": 1,
+          "maxLength": 80
+        },
+        "slug": {
+          "type": "string",
+          "description": "URL-friendly category identifier",
+          "minLength": 1,
+          "maxLength": 80,
+          "pattern": "^[a-zA-Z0-9_\\-]+$"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation server timestamp"
+        }
+      },
+      "required": ["name", "slug", "createdAt"]
+    },
+    "ServiceItem": {
+      "title": "ServiceItem",
+      "description": "Photography and videography service package offered by CAREMEDIA.",
+      "type": "object",
+      "properties": {
+        "title": {
+          "type": "string",
+          "description": "Name of the service",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "description": {
+          "type": "string",
+          "description": "Short description of deliverables and coverage",
+          "minLength": 1,
+          "maxLength": 1000
+        },
+        "imageUrl": {
+          "type": "string",
+          "description": "Cover photograph URL for the service card",
+          "minLength": 1,
+          "maxLength": 2000
+        },
+        "deliverables": {
+          "type": "string",
+          "description": "Summary of key deliverables separated by middots",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "orderIndex": {
+          "type": "number",
+          "description": "Display sort order"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update server timestamp"
+        }
+      },
+      "required": ["title", "description", "imageUrl", "deliverables", "orderIndex", "updatedAt"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Customer booking and event coverage enquiry containing private contact details.",
+      "type": "object",
+      "properties": {
+        "fullName": {
+          "type": "string",
+          "description": "Client full name",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "phone": {
+          "type": "string",
+          "description": "Client phone or WhatsApp number",
+          "minLength": 5,
+          "maxLength": 40
+        },
+        "email": {
+          "type": "string",
+          "description": "Client email address",
+          "minLength": 3,
+          "maxLength": 150
+        },
+        "eventType": {
+          "type": "string",
+          "description": "Type of event being booked",
+          "minLength": 1,
+          "maxLength": 100
+        },
+        "eventDate": {
+          "type": "string",
+          "description": "Scheduled date of the event",
+          "minLength": 1,
+          "maxLength": 40
+        },
+        "eventLocation": {
+          "type": "string",
+          "description": "Venue and city of the event",
+          "minLength": 1,
+          "maxLength": 250
+        },
+        "serviceRequired": {
+          "type": "string",
+          "description": "Specific CAREMEDIA service requested",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "additionalInfo": {
+          "type": "string",
+          "description": "Additional project notes or special requests",
+          "maxLength": 2000
+        },
+        "status": {
+          "type": "string",
+          "description": "Booking workflow status",
+          "enum": ["pending", "confirmed", "declined", "completed"],
+          "maxLength": 30
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Submission server timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last status update server timestamp"
+        }
+      },
+      "required": [
+        "fullName",
+        "phone",
+        "email",
+        "eventType",
+        "eventDate",
+        "eventLocation",
+        "serviceRequired",
+        "additionalInfo",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Customer review submitted for admin approval and public display.",
+      "type": "object",
+      "properties": {
+        "customerName": {
+          "type": "string",
+          "description": "Name of the reviewer",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "roleOrEvent": {
+          "type": "string",
+          "description": "Event type or client title (e.g. Wedding Couple, Corporate Client)",
+          "minLength": 1,
+          "maxLength": 120
+        },
+        "review": {
+          "type": "string",
+          "description": "Customer testimonial text",
+          "minLength": 5,
+          "maxLength": 1500
+        },
+        "rating": {
+          "type": "number",
+          "description": "Star rating from 1 to 5"
+        },
+        "photoUrl": {
+          "type": "string",
+          "description": "Optional customer or event photograph URL",
+          "maxLength": 2000
+        },
+        "approved": {
+          "type": "boolean",
+          "description": "Whether the review has been approved by an administrator for public display"
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Submission server timestamp"
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Approval or edit server timestamp"
+        }
+      },
+      "required": [
+        "customerName",
+        "roleOrEvent",
+        "review",
+        "rating",
+        "photoUrl",
+        "approved",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "SiteSettings": {
+      "title": "SiteSettings",
+      "description": "Global CAREMEDIA website copy and contact configuration editable by admin.",
+      "type": "object",
+      "properties": {
+        "heroTitle": {
+          "type": "string",
+          "description": "Main hero brand display title",
+          "minLength": 1,
+          "maxLength": 150
+        },
+        "slogan": {
+          "type": "string",
+          "description": "Brand slogan displayed in hero and footer",
+          "minLength": 1,
+          "maxLength": 250
+        },
+        "heroSubtitle": {
+          "type": "string",
+          "description": "Supporting lead description in the hero section",
+          "minLength": 1,
+          "maxLength": 300
+        },
+        "aboutText": {
+          "type": "string",
+          "description": "Editorial About CAREMEDIA narrative",
+          "minLength": 1,
+          "maxLength": 3000
+        },
+        "phone": {
+          "type": "string",
+          "description": "Primary business phone number",
+          "minLength": 5,
+          "maxLength": 40
+        },
+        "whatsapp": {
+          "type": "string",
+          "description": "International WhatsApp number",
+          "minLength": 5,
+          "maxLength": 40
+        },
+        "location": {
+          "type": "string",
+          "description": "Studio address and region",
+          "minLength": 2,
+          "maxLength": 200
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Last update server timestamp"
+        }
+      },
+      "required": [
+        "heroTitle",
+        "slogan",
+        "heroSubtitle",
+        "aboutText",
+        "phone",
+        "whatsapp",
+        "location",
+        "updatedAt"
+      ]
+    },
+    "AdminRecord": {
+      "title": "AdminRecord",
+      "description": "Trusted administrator lookup document.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "description": "Admin verified email",
+          "minLength": 3,
+          "maxLength": 150
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Creation server timestamp"
+        }
+      },
+      "required": ["email", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/portfolioItems/{itemId}": {
+      "schema": { "$ref": "#/entities/PortfolioItem" },
+      "description": "Publicly viewable portfolio photographs and video projects managed by admins."
+    },
+    "/categories/{categoryId}": {
+      "schema": { "$ref": "#/entities/Category" },
+      "description": "Publicly viewable portfolio categories managed by admins."
+    },
+    "/services/{serviceId}": {
+      "schema": { "$ref": "#/entities/ServiceItem" },
+      "description": "Publicly viewable photography and videography services managed by admins."
+    },
+    "/bookings/{bookingId}": {
+      "schema": { "$ref": "#/entities/Booking" },
+      "description": "Customer booking enquiries. Public visitors can create pending bookings; only admins can read, update, or delete due to PII."
+    },
+    "/testimonials/{testimonialId}": {
+      "schema": { "$ref": "#/entities/Testimonial" },
+      "description": "Customer testimonials. Visitors can submit unapproved testimonials; public can only read approved testimonials; admins can manage all."
+    },
+    "/siteSettings/{settingId}": {
+      "schema": { "$ref": "#/entities/SiteSettings" },
+      "description": "Publicly readable website brand settings editable only by admins."
+    },
+    "/admins/{adminUid}": {
+      "schema": { "$ref": "#/entities/AdminRecord" },
+      "description": "Administrator registry readable and writable only by verified admins."
+    }
+  }
+}

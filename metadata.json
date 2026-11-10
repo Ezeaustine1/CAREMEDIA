@@ -1,0 +1,6 @@
+{
+  "name": "CAREMEDIA – Photography & Videography",
+  "description": "Premium commercial photography, cinematic videography, and media production studio in Ota, Ogun State, Nigeria. Capturing Moments. Creating Memories. Telling Stories.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
